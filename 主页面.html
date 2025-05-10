@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- 网页自适应屏幕大小 -->
+	<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width">
+	<title>教室屏</title>
+	<link rel="stylesheet" type="text/css" href="级联样式表1.css">
+	<link rel="icon" type="image/png" sizes="32*32" href="images/favicon.png">
+	<script type="text/javascript" src="JavaScript脚本.js"></script>
+	<script type="text/javascript" src="jquery/jquery-3.4.0.js"></script>
+	<script src="jquery/jquery.i18n.properties.js"></script>
+</head>
+
+
+<body>
+	<img class="object-fit-cover-logoback" id="logouit" src="images/班级屏-预加载.png">
+	<img class="object-fit-cover-back" id="background-image-start" width="100%" height="100%">
+
+	<script type="text/javascript">
+		var afb = Math.floor((Math.random()*35)+1);
+		document.getElementById("background-image-start").src=
+			"images/backjpeg/"+ afb +".jpeg";
+	</script>
+
+
+	<!------- 底部包含框 --------->
+	<div id="bottom-container" class="bottom-container">
+		<!--*************底部图片**************-->
+		<div id="bottom-sub-container1">
+			<div id="sub-container1-img">
+				<img id="bottom-langimg" src="images/chinese.png">
+			</div>
+			<div id="sub-container1-elem">			
+			</div>				
+		</div>
+		<div id="bottom-sub-container2">
+			<div id="sub-container2-elem">				
+			</div>
+		</div>
+		<div id="bottom-sub-container3">
+			<div id="sub-container3-elem">				
+			</div>		
+		</div>
+		<div id="bottom-sub-container4">
+			<div id="sub-container4-elem">		
+			</div>		
+		</div>
+		<div id="bottom-sub-container5">
+			<div id="sub-container5-elem">				
+			</div>
+		</div>
+		<div id="bottom-sub-container6">
+			<div id="sub-container6-elem">				
+			</div>			
+		</div>
+		<div id="bottom-sub-container7">	
+			<div id="sub-container7-elem">				
+			</div>		
+		</div>
+		<div id="bottom-sub-container8">	
+			<div id="sub-container8-elem">				
+			</div>		
+		</div>
+		<div id="bottom-sub-container9">
+			<div id="sub-container9-elem">				
+			</div>			
+		</div>
+		<div id="bottom-sub-container10">
+			<div id="sub-container10-elem">				
+			</div>
+		</div>
+		<div id="bottom-sub-container11">	
+			<div id="sub-container11-elem">				
+			</div>	
+		</div>
+		<div id="bottom-sub-container12">	
+			<div id="sub-container12-elem">				
+			</div>
+		</div>
+
+
+
+		<!--***********底部文字***********-->
+		<div id="bottom-text-container1">
+			<p id="bottom-text1" class="changelang">语言</p>
+		</div>
+		<div id="bottom-text-container2">
+			<p id="bottom-text2" class="changelang">背景图案</p>
+		</div>
+		<div id="bottom-text-container3">
+			<p id="bottom-text3" class="changelang">随机选人</p>
+		</div>
+		<div id="bottom-text-container4">
+			<p id="bottom-text4" class="changelang">声级</p>
+		</div>
+		<div id="bottom-text-container5">
+			<p id="bottom-text5" class="changelang">qr码</p>
+		</div>
+		<div id="bottom-text-container6">
+			<p id="bottom-text6" class="changelang">画图</p>
+		</div>
+		<div id="bottom-text-container7">
+			<p id="bottom-text7" class="changelang">画图</p>
+		</div>
+		<div id="bottom-text-container8">
+			<p id="bottom-text8" class="changelang">写文字</p>
+		</div>
+		<div id="bottom-text-container9">
+			<p id="bottom-text9" class="changelang">学习指令</p>
+		</div>
+		<div id="bottom-text-container10">
+			<p id="bottom-text10" class="changelang">红绿灯</p>
+		</div>
+		<div id="bottom-text-container11">
+			<p id="bottom-text11" class="changelang">计时器</p>
+		</div>
+		<div id="bottom-text-container12">
+			<p id="bottom-text12" class="changelang">时钟</p>
+		</div>
+	</div>
+
+
+
+	<!-------------- 弹出对话框 -------------->
+	<!-- 语言 -->
+	<div id="dlgLanguage" class="dlgLanguage">
+		<input type="button" id="langbtn1" class="langbtn1 langbtn" value="Chinese">
+		<img src="images/chinese.png" class="langimg1 langimg">
+		<input type="button" id="langbtn2" class="langbtn2 langbtn" value="English (UK)">
+		<img src="images/english_uk.png" class="langimg2 langimg">
+	</div>
+
+
+	<!-- 背景图案选择框的背景 -->
+	<div id="dlgBackimg-back"></div>
+	<!-- 背景图案 -->
+	<div id="dlgBackimg">
+		<div id="backimg1-container">
+			<div id="backimg1" name="backimg"></div>
+		</div>
+		<div id="backimg2-container">
+			<div id="backimg2" name="backimg"></div>
+		</div>
+		<div id="backimg3-container">
+			<div id="backimg3" name="backimg"></div>
+		</div>
+		<div id="backimg4-container">
+			<div id="backimg4" name="backimg"></div>
+		</div>
+		<div id="backimg5-container">
+			<div id="backimg5" name="backimg"></div>
+		</div>
+		<div id="backimg6-container">
+			<div id="backimg6" name="backimg"></div>
+		</div>
+		<div id="backimg7-container">
+			<div id="backimg7" name="backimg"></div>
+		</div>
+		<div id="backimg8-container">
+			<div id="backimg8" name="backimg"></div>
+		</div>
+		<div id="backimg9-container">
+			<div id="backimg9" name="backimg"></div>
+		</div>
+		<div id="backimg10-container">
+			<div id="backimg10" name="backimg"></div>
+		</div>
+		<div id="backimg11-container">
+			<div id="backimg11" name="backimg"></div>
+		</div>
+		<div id="backimg12-container">
+			<div id="backimg12" name="backimg"></div>
+		</div>
+		<div id="backimg13-container">
+			<div id="backimg13" name="backimg"></div>
+		</div>
+		<div id="backimg14-container">
+			<div id="backimg14" name="backimg"></div>
+		</div>
+		<div id="backimg15-container">
+			<div id="backimg15" name="backimg"></div>
+		</div>
+		<div id="backimg16-container">
+			<div id="backimg16" name="backimg"></div>
+		</div>
+		<div id="backimg17-container">
+			<div id="backimg17" name="backimg"></div>
+		</div>
+		<div id="backimg18-container">
+			<div id="backimg18" name="backimg"></div>
+		</div>
+		<div id="backimg19-container">
+			<div id="backimg19" name="backimg"></div>
+		</div>
+		<div id="backimg20-container">
+			<div id="backimg20" name="backimg"></div>
+		</div>
+		<div id="backimg21-container">
+			<div id="backimg21" name="backimg"></div>
+		</div>
+		<div id="backimg22-container">
+			<div id="backimg22" name="backimg"></div>
+		</div>
+		<div id="backimg23-container">
+			<div id="backimg23" name="backimg"></div>
+		</div>
+		<div id="backimg24-container">
+			<div id="backimg24" name="backimg"></div>
+		</div>
+		<div id="backimg25-container">
+			<div id="backimg25" name="backimg"></div>
+		</div>
+		<div id="backimg26-container">
+			<div id="backimg26" name="backimg"></div>
+		</div>
+		<div id="backimg27-container">
+			<div id="backimg27" name="backimg"></div>
+		</div>
+		<div id="backimg28-container">
+			<div id="backimg28" name="backimg"></div>
+		</div>
+		<div id="backimg29-container">
+			<div id="backimg29" name="backimg"></div>
+		</div>
+		<div id="backimg30-container">
+			<div id="backimg30" name="backimg"></div>
+		</div>
+		<div id="backimg31-container">
+			<div id="backimg31" name="backimg"></div>
+		</div>
+		<div id="backimg32-container">
+			<div id="backimg32" name="backimg"></div>
+		</div>
+		<div id="backimg33-container">
+			<div id="backimg33" name="backimg"></div>
+		</div>
+		<div id="backimg34-container">
+			<div id="backimg34" name="backimg"></div>
+		</div>
+		<div id="backimg35-container">
+			<div id="backimg35" name="backimg"></div>
+		</div>
+
+
+		<div id="gif-container">
+			<center>
+				<b>GIF</b>
+			</center>
+
+			<div id="gif1-container">
+				<div id="gif1" name="backgif"></div>
+			</div>
+			<div id="gif2-container">
+				<div id="gif2" name="backgif"></div>
+			</div>
+			<div id="gif3-container">
+				<div id="gif3" name="backgif"></div>
+			</div>
+			<div id="gif4-container">
+				<div id="gif4" name="backgif"></div>
+			</div>
+			<div id="gif5-container">
+				<div id="gif5" name="backgif"></div>
+			</div>
+			<div id="gif6-container">
+				<div id="gif6" name="backgif"></div>
+			</div>
+			<div id="gif7-container">
+				<div id="gif7" name="backgif"></div>
+			</div>
+		</div>
+
+
+		<div id="random-select-container">
+			<div id="random-select"></div>
+		</div>
+		 
+		<div id="uploadbackimg">
+			<style type="text/css">
+				label.myLabel input[type="file"] {
+					position: fixed;
+					top: -1000px; right: 1000px;
+				}
+				.myLabel {
+					border-radius: 30px;
+					width: 32px; height: 32px;
+				}
+			</style>
+			<label class="myLabel">
+				<input id="loadbackimg" type="file">
+				<span>
+					<img src="./images/backimg/uploadbtn.png" style="width: 32px; height: 32px; cursor: pointer;">
+				</span>
+			</label>
+		</div>
+
+	</div>
+	<!-- 外加操作自己上传的图片的按钮 -->
+	<div id="operatebtn">
+		<div id="left-revolve-container">
+			<div id="left-revolve"></div>
+		</div>
+		<div id="right-revolve-container">
+			<div id="right-revolve"></div>
+		</div>
+		<div id="extend-size-container">
+			<div id="extend-size"></div>
+		</div>
+		<div id="shrink-size-container">
+			<div id="shrink-size"></div>
+		</div>
+	</div>
+
+
+
+	<!-- 随机选人 -->
+	<div id="dlgChoose">
+		<div id="drag-flag-container3">
+			<div id="drag-flag-backimg">
+			</div>
+			<div id="drag-flag">				
+			</div>
+		</div>
+		<div id="sub-dlgChoose-namepicker">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border:none;" src="./iframe/namepicker.html"></iframe>
+		</div>
+		<div id="sub-dlgChoose-dice">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border:none;" src="./iframe/dice.html"></iframe>
+		</div>
+		<div id="sub-dlgChoose-switchbtn1">
+		</div>	
+		<div id="sub-dlgChoose-switchbtn2">
+		</div>	
+	</div>
+
+
+
+	<!-- 声级 -->
+	<div id="dlgSoundLevel">	
+		<div id="drag-soundlevel"></div>
+		<div id="startbtn-container">
+			<div id="startbtn"></div>
+		</div>		
+		<!-- 刻度	 -->
+		<div id="scale-container">
+			<div id="scale0">0</div>
+			<div id="scale1">1</div>
+			<div id="scale2">2</div>
+			<div id="scale3">3</div>
+			<div id="scale4">4</div>
+			<div id="scale5">5</div>
+			<div id="scale6">6</div>
+			<div id="scale7">7</div>
+			<div id="scale8">8</div>
+			<div id="scale9">9</div>
+			<div id="scale10">10</div>
+		</div>
+		<!-- 指针 -->
+		<div id="pointer-container">
+			<div id="above-sector"></div>
+			<div id="straight-line"></div>
+			<div id="below-sector"></div>
+		</div>
+		<!-- 画布 -->
+		<canvas id="meter" width="398" height="40"></canvas>
+		<div id="canvas-margin"></div>
+		<!-- 移动指针按钮 -->
+		<div id="move-pointer">
+			<div id="leftmove-container"></div>
+			<div id="leftmove"></div>
+			<div id="waveimg"></div>
+			<div id="rightmove-container"></div>
+			<div id="rightmove"></div>
+		</div>
+		<!-- 灵敏度 -->
+		<div id="sensitivity-container">
+			<div id="sensitivity-text">sensitivity</div>
+			<div id="sensi1">1</div>
+			<div id="sensi1-back" name="sensi"></div>
+			<div id="sensi2">2</div>
+			<div id="sensi2-back" name="sensi"></div>
+			<div id="sensi3">3</div>
+			<div id="sensi3-back" name="sensi"></div>
+			<div id="sensi4">4</div>
+			<div id="sensi4-back" name="sensi"></div>
+			<div id="sensi5">5</div>
+			<div id="sensi5-back" name="sensi"></div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<!-- 二维码 -->
+	<div id="dlgQr">
+		<div id="drag-flag-container5">
+			<div id="drag-flag-backimg">
+			</div>
+			<div id="drag-flag">				
+			</div>
+		</div>
+		<div id="sub-dlgQr">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/qrgenerator.html"></iframe>
+		</div>
+	</div>
+
+
+	<!-- 大屏画图 -->
+	<div id="dlgBigDraw">
+		<div id="sub-dlgBigDraw">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/bigdraw.html"></iframe>
+		</div>
+		<div id="backimg-container-bigdraw">
+			<style type="text/css">
+				#back-bigdraw {
+					display: block; object-fit: cover;
+					position: absolute; z-index: 2;
+				}
+				#white-bigdraw {
+					display: block; object-fit: cover;
+					position: absolute; z-index: 1;
+				}
+			</style>
+			<img id="back-bigdraw" src="./images/draw_back_big.png" width="100%" height="100%">
+			<img id="white-bigdraw" src="./images/draw_back_big.png" width="100%" height="100%" style="visibility: visible;;">
+		</div>
+	</div>
+
+
+
+	<!-- 小屏画图 -->
+	<div id="dlgSmallDraw">
+		<div id="drag-flag-container7">
+			<div id="drag-flag-backimg">
+			</div>
+			<div id="drag-flag">				
+			</div>
+		</div>
+		<div id="sub-dlgSmallDraw">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/smalldraw.html"></iframe>
+		</div>
+		<div id="img-container-smalldraw">
+			<img id="img-smalldraw" width="100%" height="100%">
+		</div>
+		<div id="uploadbtn_smalldraw">
+			<style type="text/css">
+				label.myLabel input[type="file"] {
+					position: fixed;
+					top: -1000px; right: 1000px;
+				}
+			</style>
+			<label class="myLabel">
+				<input type="file" onchange="document.getElementById('img-smalldraw').src = window.URL.createObjectURL(this.files[0]);">
+				<span>
+					<img src="./images/uploadbtn_drawing.png" style="width: 20px; height: 24px;">
+				</span>
+			</label>
+		</div>
+		<div id="uploadkruisbtn_smalldraw">
+		</div>
+	</div>
+
+
+	<!-- 写文字 -->
+	<div id="dlgWord">
+		<div id="drag-flag-container8">
+			<div id="drag-flag-backimg">
+			</div>
+			<div id="drag-flag">				
+			</div>
+		</div>
+		<div id="sub-dlgWord">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/teachertext.html"></iframe>
+		</div>	
+	</div>
+
+
+	<!-- 学习指令 -->
+	<div id="dlgInstruction">
+		<div id="drag-instruction"></div>
+		<!-- 安静 -->
+		<div id="quiet-container" name="container-shrink"></div>
+		<div id="quiet-img-container" name="btn-dynamic-hidden">
+			<div id="quiet-small-back-circle"></div>
+			<div id="quiet-small-image"></div>
+		</div>
+		<div id="quiet-text" name="text-hidden">
+			<p style="cursor: pointer; margin: 3px 8px;">安静</p>
+		</div>
+
+		<!-- 私语 -->
+		<div id="whisper-container" name="container-shrink"></div>
+		<div id="whisper-img-container" name="btn-dynamic-hidden">
+			<div id="whisper-small-back-circle"></div>
+			<div id="whisper-small-image"></div>
+		</div>
+		<div id="whisper-text" name="text-hidden">
+			<p style="cursor: pointer; margin: 3px 8px;">窃窃私语</p>
+		</div>
+
+		<!-- 问邻桌 -->
+		<div id="ask-container" name="container-shrink"></div>
+		<div id="ask-img-container" name="btn-dynamic-hidden">
+			<div id="ask-small-back-circle"></div>
+			<div id="ask-small-image"></div>
+		</div>
+		<div id="ask-text" name="text-hidden">
+			<p style="cursor: pointer; margin: 3px 8px;">问邻桌</p>
+		</div>
+
+		<!-- 分组学习 -->
+		<div id="group-container" name="container-shrink"></div>
+		<div id="group-img-container" name="btn-dynamic-hidden">
+			<div id="group-small-back-circle"></div>
+			<div id="group-small-image"></div>
+		</div>
+		<div id="group-text" name="text-hidden">
+			<p style="cursor: pointer; margin: 3px 8px;">分组学习</p>
+		</div>
+
+		<!-- 大图 -->
+		<div id="big-back-circle"></div>
+		<div id="quiet-big-image" name="bigimg-hidden"></div>
+		<div id="quiet-big-text" name="bigimg-hidden">
+			<p style="cursor: pointer; margin: 3px 8px; text-align: center;">安静</p>
+		</div>
+
+		<div id="whisper-big-image" name="bigimg-hidden"></div>
+		<div id="whisper-big-text" name="bigimg-hidden">
+			<p style="cursor: pointer; margin: 3px 8px; text-align: center;">窃窃私语</p>
+		</div>
+
+		<div id="ask-big-image" name="bigimg-hidden"></div>
+		<div id="ask-big-text" name="bigimg-hidden">
+			<p style="cursor: pointer; margin: 3px 8px; text-align: center;">问邻桌</p>
+		</div>
+
+		<div id="group-big-image" name="bigimg-hidden"></div>
+		<div id="group-big-text" name="bigimg-hidden">
+			<p style="cursor: pointer; margin: 3px 8px; text-align: center;">分组学习</p>
+		</div>
+	</div>
+
+
+
+
+	<!-- 红绿灯 -->
+	<div id="dlgLight">
+		<div id="drag-light"></div>
+		<div id="sub-dlgLight">
+			<div id="turn-red-light">			
+			</div>
+			<div id="turn-yellow-light">			
+			</div>
+			<div id="turn-green-light">			
+			</div>
+		</div>
+		<div id="dlgLight-cover-red">			
+		</div>
+		<div id="dlgLight-cover-yellow">			
+		</div>
+		<div id="dlgLight-cover-green">			
+		</div>		
+	</div>
+
+
+	<!-- 计时器 -->
+	<div id="dlgTimer">
+		<div id="drag-flag-container11">
+			<div id="drag-flag-backimg">
+			</div>
+			<div id="drag-flag">				
+			</div>
+		</div>
+		<div id="dlgTimer-sandglass">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/sandglass.html"></iframe>
+		</div>
+		<div id="dlgTimer-stopwatch">
+			<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/stopwatch.html"></iframe>
+		</div>
+		<div id="btn-timer1"></div>
+		<div id="btn-timer2"></div>
+	</div>
+
+
+	<!-- 时钟 -->
+	<div id="dlgClock">
+		<div id="drag-flag-container12">
+			<div id="drag-flag-backimg">
+			</div>
+			<div id="drag-flag">				
+			</div>
+		</div>
+		<div id="dlgClock-time">
+			<!-- 时间面 -->
+			<div id="clock24h">
+				<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/clock24h.html"></iframe>
+			</div>
+			<div id="clock12h">
+				<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/clock12h.html"></iframe>
+			</div>
+			<div id="btn-12h">			
+			</div>
+			<div id="btn-24h">			
+			</div>
+			<div id="analogclock">
+				<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/analogclock.html"></iframe>
+			</div>
+		</div>
+		<!-- 日期面 -->
+		<div id="dlgClock-date">
+			<div id="date">
+				<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/date.html"></iframe>
+			</div>
+			<div id="calendar">
+				<iframe frameborder="0" style="width: 100%; height: 100%; border: none;" src="./iframe/calendar.html"></iframe>
+			</div>
+		</div>
+		
+		<div id="above-dlgClock">		
+		</div>
+		<div id="below-dlgClock">			
+		</div>
+		<div id="btn-clock1">			
+		</div>
+		<div id="btn-clock2">			
+		</div>
+	</div>
+
+
+
+
+
+	<!-- --------------右下角按钮-------------- -->
+	<!-- 全屏显示按钮 -->
+	<div id="screensizebtn-container">
+		<div id="fullscreenbtn">
+		</div>
+		<div id="cancelscreenbtn">
+		</div>
+	</div>
+
+
+	<!-- 隐藏底部工具框 -->
+	<div id="hidetoolbar-container">
+		<div id="hidetoolbar-btn">
+		</div>
+		<div id="hidetoolbar-arrow" class="hidetoolbar-arrow">		
+		</div>
+	</div>
+</body>
+</html>
