@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>clock12h</title>
+	<style type="text/css">
+		body {
+			overflow: visible;
+		}
+		#ampmclock {
+			position: absolute; 
+			z-index: 5; top: 17px;
+			margin-left: auto; margin-right: auto;
+			left: 0; right: 0;
+		}
+		#container {
+			background-color: rgba(256, 256, 256, 0.0); 
+			padding: 0px; resize: none; 
+			border: 0; 
+			width: 100%; height: 100%; 
+			text-align: center;"
+		}
+		#ampm, #clk {
+			color: white;
+		}
+		#clk {
+			font: 70px "Helvetica", Geneva, sans-serif;
+		}
+		#ampm {
+			font: 18px "Helvetica", Geneva, sans-serif;
+		}
+	</style>
+	<script type="text/javascript">
+		function pad(num) {return ("0" + num).slice(-2);}
+
+		function time1(){
+			var today = new Date();
+			var h = today.getHours();
+			var hr = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+
+			h = h % 12;
+			h = h ? h : 12;
+			// h ? h : 12为条件表达式，当h为0或12时，h的值为0，也就是false，所以
+			// 结果为12
+			// 不是false, 0, undefined, NaN, "" or null，js都认为是true
+			var ampmtext = "PM";
+			if (hr < 12) {ampmtext = "AM"}
+			clk.innerHTML = h + ':' + pad(m);
+			ampm.innerHTML = ampmtext;
+		}
+		window.onload = function(){
+			var clk = document.getElementById('clk');
+			t = setInterval(time1, 1000);
+		}
+
+	</script>
+</head>
+<body>
+	<div id="ampmclock">
+		<div id="container">
+			<span id="clk"></span>
+			<br>
+			<span id="ampm"></span>
+		</div>
+	</div>
+</body>
+</html>

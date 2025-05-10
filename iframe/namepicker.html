@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>namepicker</title>
+
+	<style type="text/css">
+		body {
+			overflow: hidden;
+		}
+		label.myLabel input[type="file"] {
+			position: fixed;
+			top: -500px;
+		}
+		.saveicon {
+			width: 18px; height: 18px;
+			position: absolute;
+			top: 0px; left: 14px;
+			z-index: 100;
+			outline: none;
+		}
+		.myLabel {
+			position: absolute;
+			top: 0px; left: 36px;
+			z-index: 100;
+		}
+		.container {
+			margin-top: 22px;
+		}
+		#inputTextToSave {
+			width: 200px; height: 165px;
+			border: solid 1px #009051;
+			border-radius: 7px;
+			background-color: rgba(256, 256, 256, 0);
+			padding: 10px; font: 12px "Verdana";
+			resize: none;
+			/*令浏览器呈现出带有指定宽度和高度的框，并把边框和内边距放入框中*/
+			box-sizing: border-box;
+		}
+		.button {
+			background-color: #009051;
+			border: none; color: white;
+			padding: 4px 25px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px; margin: 4px 2px;
+			cursor: pointer; border-radius: 70px;
+			font-weight: bold; outline: none;
+		}
+		#result {
+			width: 200px; height: 40px;
+			border: solid 1px #009051;
+			border-radius: 7px;
+			background-color: rgba(256, 256, 256, 0);
+			padding: 10px; font: 18px "Verdana";
+			resize: none; color: #009051;
+			text-align: center; box-sizing: border-box;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function saveTextAsFile(){
+			var textToSave = document.getElementById("inputTextToSave").value;
+			var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+			var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+			var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+
+			var downloadLink = document.createElement("a");
+			downloadLink.download = fileNameToSaveAs;
+			downloadLink.innerHTML = "Download File";
+			downloadLink.href = textToSaveAsURL;
+			downloadLink.onclick = destroyClickedElement;
+			downloadLink.style.display = "none";
+			document.body.appendChild(downloadLink);
+
+			downloadLink.click();
+		}
+
+		function destroyClickedElement(event){
+			document.body.removeChild(event.target);
+		}
+
+		function loadFileAsText(){
+			var fileToLoad = document.getElementById("fileToLoad").files[0];
+
+			var fileReader = new FileReader();
+			fileReader.onload = function(fileLoadedEvent){
+				var textFromFileLoaded = fileLoadedEvent.target.result;
+				document.getElementById("inputTextToSave").value = textFromFileLoaded;
+			};
+			fileReader.readAsText(fileToLoad, "UTF-8");
+		}
+
+		function chooseRandomly(){
+			choices = document.getElementById("inputTextToSave").value.split("\n");
+			if (choices.length == 0) return;
+			document.getElementById("result").value = choices[Math.floor(Math.random() * choices.length)];
+		}
+	</script>
+</head>
+<body>
+	<center>
+		<input type="image" class="saveicon" src="../images/savebtn.png" onclick="saveTextAsFile()">
+		<label class="myLabel">
+			<input type="file" id="fileToLoad" onchange="loadFileAsText()">
+			<span>
+				<img src="../images/uploadbtn_drawing.png" style="width: 16px; height: 18px">
+			</span>
+		</label>
+
+		<div class="container">
+			<textarea id="inputTextToSave" placeholder="Type one name per line here or load a file (.txt)"></textarea>
+			<br>
+			<textarea id="inputFileNameToSaveAs" style="display: none; resize: none;">Random name file</textarea>
+
+			<form onsubmit="return false;">
+				<input type="button" class="button" value="Choose" onclick="chooseRandomly(); return false;">
+				<br>
+				<input type="text" id="result" readonly="readonly">
+			</form>
+		</div>
+	</center>
+</body>
+</html>

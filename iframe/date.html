@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>date</title>
+	<style type="text/css">
+		body {
+			overflow: hidden;
+		}
+		#date1, #date2, #date3 {
+			font-weight: bold; width: 210px;
+			font-family: 'Helvetica Neue', 'Helvetica';
+			text-align: center; color: #ffffff;
+
+			position: absolute; z-index: 10;
+			margin-left: auto; margin-right: auto;
+			left: 0; right: 0;
+		}
+		#date1 {
+			font-size: 12px;
+			top: 3px; 
+		}
+		#date2 {
+			font-size: 16px;
+			top: 18px; 
+			text-transform: uppercase;
+		}
+		#date3 {
+			font-size: 65px;
+			top: -17px;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<p id="date1"></p>
+		<p id="date2"></p>
+		<p id="date3"></p>
+	</center>
+
+	<script type="text/javascript">
+		var lang = 'en';
+		var lang = navigator.language || navigator.browserLanguage;
+
+		var date = new Date();
+
+		var options1 = {weekday: 'long'};
+		var options2 = {month: 'long'};
+		var options3 = {day: 'numeric'};
+		var options4 = {year: 'numeric'};
+
+		var datetext1 = (date.toLocaleDateString(lang, options1));
+		var datetext2 = (date.toLocaleDateString(lang, options2));
+		var datetext3 = (date.toLocaleDateString(lang, options3));
+		var datetext4 = (date.toLocaleDateString(lang, options4));
+
+		document.getElementById('date1').innerHTML = datetext1;
+		document.getElementById('date2').innerHTML = datetext2 + " " + datetext4;
+		document.getElementById('date3').innerHTML = datetext3;
+	</script>
+</body>
+</html>

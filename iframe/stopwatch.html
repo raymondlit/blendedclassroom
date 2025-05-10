@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>stopwatch</title>
+	<style type="text/css">
+		body {
+			font-family: Arial;
+			overflow: hidden;
+		}
+		#back {
+			position: absolute; opacity: 0.9;
+			border-radius: 7px; z-index: 0;
+			left: 0px; top: 0px;
+			width: 440px; height: 197px;
+		}
+		.wrapper {
+			position: fixed; display: inline-block;
+			margin-left: 0;
+			width: 420px; height: 200px;
+		}
+		#stop, #start, #reset, #lap {
+			float: right; margin-right: 0;
+			border-radius: 25px; position: absolute;
+			z-index: 10; outline: none;
+		}
+		#stop { right: 60px; top: 145px;}
+		#start { right: 60px; top: 110px; }
+		#reset { right: 140px; top: 145px; }
+		#lap { right: 140px; top: 110px; }
+
+		.tile{
+			border: none; display: block;
+			border-radius: 0;
+		}
+		.action-button {
+			cursor: pointer; color: white;
+			font-size: 1em; padding: 5px;
+			margin: 0; width: 70px;
+		}
+		.start-button { background-color: #009051; }
+		.lap-button { background-color: #4390DF; }
+		.stop-button { background-color: #EC0000; }
+		.reset-button { background-color: #F2F200; }
+
+		#watch-dial {
+			font-size: 3.3em; text-align: right;
+			/*font-family: monospace; font-family: courier new;*/
+			color: #000;
+			padding-right: 5px; padding-top: 30px;
+		}
+		#laps{
+			background-color: #CCCCCC; border-radius: 7px;
+			margin-left: 0px; margin-top: 0px;
+			height: 179px; width: 144px;
+			overflow-y: auto; color: black;
+			/*list-style: none;*/ padding: 3px;
+			position: absolute; top: 5px;
+			z-index: 10;
+		}
+		#laps > li {
+			padding-top: 1px; padding-left: 1px;
+			/*font-family: monospace; font-size: 1.2em;*/
+		}
+	</style>
+</head>
+<body>
+	<img id="back" src="../images/sandglass/back.jpg">
+	<nav id="controls">
+		<button id="start" class="start-button action-button tile" onclick="stopwatch.start();">开始</button>
+		<button id="lap" class="lap-button action-button tile" onclick="stopwatch.lap();">排名</button>
+		<button id="stop" class="stop-button action-button tile" onclick="stopwatch.stop();">暂停</button>
+		<button id="reset" class="reset-button action-button tile" onclick="stopwatch.restart();">重置</button>
+	</nav>
+	<div id="watch-dial" class="stopwatch wrapper tile"></div>
+	<center>
+		<br>
+		<ul id="laps" class="results"></ul>
+	</center>
+
+	<script type="text/javascript">
+		lapCount = 0;
+
+
+		class Stopwatch {
+			constructor(display, results) {
+				this.running = false;
+				this.display = display;
+				this.results = results;
+				this.laps = [];
+				this.reset();
+				this.print(this.times);
+			}
+
+			reset(){
+				this.times = [0, 0, 0];
+			}
+
+			start(){
+				if (!this.time) { this.time = performance.now(); }
+				if (!this.running) {
+					this.running = true;
+					requestAnimationFrame(this.step.bind(this));
+				}
+			}
+
+			lap(){
+				lapCount += 1;
+				let times = this.times;
+
+				let li = document.createElement('li');
+				li.innerText = "#" + lapCount + " " + this.format(times);
+				this.results.appendChild(li);
+
+				var elem = document.getElementById('laps');
+				elem.scrollTop = elem.scrollHeight;
+			}
+
+			stop(){
+				this.running = false;
+				this.time = null;
+			}
+
+			restart(){
+				this.times = [0, 0, 0];
+				this.running = false;
+				this.time = null;
+				clearChildren(this.results);
+				lapCount = 0;
+
+				let stopwatch = new Stopwatch(
+					document.querySelector('.stopwatch'),
+					document.querySelector('.results')
+				);
+			}
+
+			step(timestamp){
+				if (!this.running) return;
+				this.calculate(timestamp);
+				this.time = timestamp;
+				this.print();
+				requestAnimationFrame(this.step.bind(this));
+			}
+
+			calculate(timestamp){
+				var diff = timestamp - this.time;
+				this.times[2] += diff / 10;
+				if (this.times[2] >= 100) {
+					this.times[1] += 1;
+					this.times[2] -= 100;
+				}
+				if (this.times[1] >= 60) {
+					this.times[0] += 1;
+					this.times[1] -= 60;
+				}
+			}
+
+			print(){
+				this.display.innerText = this.format(this.times);
+			}
+
+			format(times){
+				return `\ ${pad0(times[0], 2)}:\ ${pad0(times[1], 2)}:\ ${pad0(Math.floor(times[2]), 2)}`;
+			}
+
+		}
+
+		function pad0(value, count){
+			var result = value.toString();
+			for(; result.length < count; --count)
+				result = '0' + result;
+			return result;
+		}
+
+		function clearChildren(node){
+			while(node.lastChild)
+				node.removeChild(node.lastChild);
+		}
+
+		let stopwatch = new Stopwatch(
+			document.querySelector('.stopwatch'),
+			document.querySelector('.results')
+		);
+
+	</script>
+</body>
+</html>

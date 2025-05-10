@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sandglass</title>
+	<style type="text/css">
+		#back{
+		  position: absolute; z-index: 0;
+		  opacity: 0.9; border-radius: 7px;   
+		  left: 0px; top: 0px;	
+		  width: 440px; height: 197px;	  
+		}
+		#backblack{
+		  position: absolute; z-index: 5;
+		  opacity: 0.3; border-radius: 40px;
+		  left: 14px; top: 18px;		
+		  width: 100px; height: 160px;  	  
+		}
+		#sandglass{
+		  position: absolute; z-index: 10;
+		  left: 5px; top: 3px;
+		  height: 186px;		  	  
+		}
+		#yellow-flow{
+		  position: absolute; z-index: 5;
+		  left: 62px; top: 97px;		  
+		  width: 4px; height: 55px;		  
+		}
+		#yellow-above-container{
+		  transform: rotate(180deg);
+		  position: absolute; z-index: 5;
+		}
+		#yellow-above{
+		  position: absolute; z-index: 5;
+		  right: 20px; top: -90px;    
+		}
+		#yellow-bottom-container{
+		  transform: rotate(180deg);
+		  position: absolute; z-index: 5;
+		}
+		#yellow-bottom{
+		  position: absolute; z-index: 5;
+		  right: 20px; top: -143px;    
+		}
+		/*---------------*/
+		#timeshow{
+		  color: black; font-size: 5.6em;
+		  font-family: monospace; font-family: helvetica;		  
+		  position: absolute; z-index: 10;
+		  font-weight: 400;
+		  left: 125px; top: 45px;		  
+		  letter-spacing: -2px;
+		}
+		#h2{
+		  color: black; font-size: 3.5em;
+		  font-family: monospace; font-family: helvetica;		  
+		  position: absolute; z-index: 10;
+		  font-weight: 400;
+		  left: 225px; top: 67px; 
+		}
+		#total_time{
+		  position: absolute; z-index: 10;
+		  left: 48px; top: 47px;
+		  color: #777;
+		  font-size: 0.8em; font-family: monospace;		  
+		  font-family: helvetica; font-weight: 100;		  
+		}
+		/*--------------------*/
+		#start{
+		  position: absolute; z-index: 10; 
+		  left: 355px; top: 80px;
+		  height: 35px;			    
+		}
+		#pauze{
+		  position: absolute; z-index: 10; 
+		  left: 355px; top: 80px;
+		  height: 35px;
+		}
+		#back_play_pauze{
+		  position: absolute; z-index: 0; 
+		  left: 355px; top: 80px;	
+		  height: 35px;  	  
+		}
+		/*--------------*/
+		#plus_minute_decade{
+		  position: absolute; z-index: 10;
+		  left: 134px; top: 25px;
+		  height: 30px;		  
+		}
+		#min_minute_decade{
+		  position: absolute; z-index: 10;
+		  left: 134px; top: 145px;
+		  height: 30px;		  
+		}
+		#plus_minute_digit{
+		  position: absolute; z-index: 10;
+		  left: 183px; top: 25px;
+		  height: 30px;		  
+		}
+		#min_minute_digit{
+		  position: absolute; z-index: 10;
+		  left: 183px; top: 145px;
+		  height: 30px;	
+		}
+		#plus_second{
+		  position: absolute; z-index: 10;
+		  left: 254px; top: 25px;
+		  height: 30px;
+		}
+		#min_second{
+		  position: absolute; z-index: 10;
+		  left: 254px; top: 145px;
+		  height: 30px;	
+		}
+	</style>
+	</head>
+<body>
+	<img id="back" src="../images/sandglass/back.jpg">
+	<img id="backblack" src="../images/sandglass/backblack.png">
+	<img id="sandglass" src="../images/sandglass/sandglass.png">
+	<img id="yellow-flow" src="../images/sandglass/yellow.jpg">
+	<div id="yellow-above-container">
+		<img id="yellow-above" src="../images/sandglass/yellow.jpg" width="72" height="0">
+	</div>
+	<div id="yellow-bottom-container">
+		<img id="yellow-bottom" src="../images/sandglass/yellow.jpg" width="72" height="55">
+	</div>
+
+	<div id="timeshow">00 00</div>
+	<div id="h2">:</div>
+	<div id="total_time">00:00</div>
+
+	<input id="start" type="image" src="../images/sandglass/play_btn.png">
+	<input id="pauze" type="image" src="../images/sandglass/pauze_btn.png">
+	<img id="back_play_pauze" src="../images/sandglass/back_play_pauze.png">
+
+	<input type="image" id="plus_minute_decade" src="../images/sandglass/plusbtn_timer.png">
+	<input type="image" id="min_minute_decade" src="../images/sandglass/minbtn_timer.png">
+	<input type="image" id="plus_minute_digit" src="../images/sandglass/plusbtn_timer.png">
+	<input type="image" id="min_minute_digit" src="../images/sandglass/minbtn_timer.png">
+	<input type="image" id="plus_second" src="../images/sandglass/plusbtn_timer.png">
+	<input type="image" id="min_second" src="../images/sandglass/minbtn_timer.png">
+
+
+	<script type="text/javascript">
+		var plus_second = document.getElementById('plus_second'),
+			plus_minute_digit = document.getElementById('plus_minute_digit'),
+			plus_minute_decade = document.getElementById('plus_minute_decade'),
+			min_second = document.getElementById('min_second'),
+			min_minute_digit = document.getElementById('min_minute_digit'),
+			min_minute_decade = document.getElementById('min_minute_decade'),
+			start = document.getElementById('start'),
+			pauze = document.getElementById('pauze'),
+		    time = 0, 
+		    total_time = 0,
+		    yellow_above = 0,
+		    yellow_bottom = 0,
+		    teller_loop = false,
+		    teller;
+
+		document.getElementById('pauze').style.visibility = "hidden";
+
+		plus_second.onmousedown = plusSecond;
+		plus_minute_digit.onmousedown = plusMinuteDigit;
+		plus_minute_decade.onmousedown = plusMinuteDecade;
+		start.onmousedown = Start;
+		pauze.onmousedown = Pauze;
+		min_second.onmousedown = minSecond;
+		min_minute_digit.onmousedown = minMinuteDigit;
+		min_minute_decade.onmousedown = minMinuteDecade;
+
+		function plusSecond(){
+			time = time + 10;
+			if (time > 5999) {time = 5999;}
+			updateText();
+			totalTime();
+		}
+
+		function plusMinuteDigit(){
+			time = time + 60;
+		  	if (time > 5999) {time = 5999}
+		  	updateText();
+			totalTime();
+		}
+
+		function plusMinuteDecade(){
+			time = time + 600;
+		  	if (time > 5999) {time = 5999}
+		  	updateText();
+			totalTime();
+		}
+
+		function updateText(){
+			var minutes = Math.floor(time / 60);
+			var seconds = time - minutes * 60;
+
+			var minutes = ('0' + minutes).slice(-2);
+			var seconds = ('0' + seconds).slice(-2);
+
+			document.getElementById("timeshow").innerHTML = (minutes + " " + seconds);
+
+			yellow_above = (time / total_time) * 100;
+			yellow_bottom = 100 - yellow_above; 
+
+			if (teller_loop == true) {
+				document.getElementById("yellow-above").height = (yellow_above / 100 * 55);
+		    	document.getElementById("yellow-bottom").height = (yellow_bottom / 100 * 55);
+			}
+			
+		}	
+
+
+		function totalTime(){
+			if (time >= total_time) {
+				total_time = time;
+				var total_minutes = Math.floor(total_time / 60);
+				var total_seconds = total_time - total_minutes * 60;
+
+				var total_minutes = ('0' + total_minutes).slice(-2);
+				var total_seconds = ('0' + total_seconds).slice(-2);
+				document.getElementById("total_time").innerHTML = (total_minutes + ":" + total_seconds);
+			}
+		}
+
+		function Start(){
+			var audioClick = new Audio("../audio/click.wav");
+			audioClick.play();
+			if (time > 0) {
+				Timer();
+				updateText();
+				teller_loop = true;
+				document.getElementById('start').style.visibility = "hidden";
+		  		document.getElementById('pauze').style.visibility = "visible";
+		  		document.getElementById('yellow-flow').style.visibility = "visible";
+			}
+		}
+
+		function Pauze(){
+			clearTimeout(teller);
+		  	updateText();
+		  	teller_loop = false;
+		  	document.getElementById('start').style.visibility = "visible";
+		  	document.getElementById('pauze').style.visibility = "hidden";
+		  	document.getElementById('yellow-flow').style.visibility = "hidden"; 
+		}
+
+		function Timer(){
+			teller = setTimeout(function(){
+				time--;
+				updateTeller();
+			}, 1000);
+		}
+
+		function updateTeller(){
+			if (time < 0) {
+				clearTimeout(teller);
+		    	time = 0;
+		    	total_time = 0;
+		    	totalTime();
+		    	teller_loop = false;
+		    	document.getElementById('start').style.visibility = "visible";
+		   		document.getElementById('pauze').style.visibility = "hidden";
+			}else{
+				Timer();
+			}
+			updateText();
+		}
+
+		function minSecond(){
+			if (time >= 10) {
+				time = time - 10;
+			}
+			updateText();
+		}
+
+		function minMinuteDigit(){
+			if (time >= 60) {
+				time = time - 60;
+			}
+			updateText();
+		}
+
+		function minMinuteDecade(){
+			if (time >= 600) {
+				time = time - 600;
+			}
+			updateText();
+		}
+	</script>
+</body>
+</html>

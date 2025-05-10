@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>teachertext</title>
+	<script src="../plugins/ckeditor/ckeditor.js"></script>
+
+	<style type="text/css">
+		body {
+			margin: 0px;
+			margin-top: 17px;
+			padding: 0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<!-- <textarea name="editor" rows="50" cols="80" style="visibility: hidden; display: none;"></textarea> -->
+		<textarea name="editor"></textarea>
+		<script>
+			CKEDITOR.replace('editor', {
+				resize_enabled : false,
+			});
+			CKEDITOR.config.height = 450;
+		</script>
+	</form>
+</body>
+</html>

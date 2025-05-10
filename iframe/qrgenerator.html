@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR</title>
+	<meta charset="utf-8">
+	<script src="../jquery/jquery.min.js"></script>
+	<script src="../jquery/jquery-qrcode-0.15.0.js"></script>
+</head>
+<body>
+	<input type="text" id="text" value="https://classroomscreen.com" style="width: 89%; margin-left: 9px; ">
+	<br>
+	<div id="qrcode" style="width: 99%; height: 99%; margin-top: 5px; margin-left: 9px;" title="https://classroomscreen.com">
+		<img src="../images/scan.png" style="display: block;">
+	</div>
+
+	<script type="text/javascript">
+		function makeCode(){
+			var text = document.getElementById('text');
+			if (!text.value) {
+				text.focus();
+				return;
+			}
+			var options = {
+				render: "div",
+				ecLevel: 'H',
+				size: 200,
+				text: $("#text").val()
+			};
+			$("#qrcode").empty().qrcode(options);
+		}
+
+		makeCode();
+
+		$("#text").
+		on("blur", function(){
+			makeCode();
+		}).
+		on("keydown", function(e){
+			if (e.keyCode == 13) {
+				makeCode();
+			}
+		});
+	</script>
+</body>
+</html>
